@@ -15,7 +15,7 @@ To install CentauroTech.Utils.RegexReplacementAppender, run the following comman
 More information about the package, please visit:
 https://www.nuget.org/packages/CentauroTech.Utils.LogRequestHandler/
 
-#### Usage:
+#### Usage on a server web app:
 Add the message handler to the HttpConfiguration of you web site. The logs will appear wherever your log4net logs are being presented by your app.
 
     public static class WebApiConfig
