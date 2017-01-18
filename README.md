@@ -36,5 +36,12 @@ Add the message handler to the HttpConfiguration of you web site. The logs will 
       }
     }
 
+#### Config (Optional):
+Add a key CentauroTech.Utils.LogRequestHandler.DefaultEncoding in AppSettings to define a default encoding in case that the Content-Type header cannot be read or is invalid.
+```
+<appSettings>
+  <add key="CentauroTech.Utils.LogRequestHandler.DefaultEncoding " value="UTF-8" />
+</appSettings>
+```
 ##### log4net reference:
 https://logging.apache.org/log4net/
