@@ -8,7 +8,7 @@ Branches: &nbsp;&nbsp;&nbsp; [![Build status](https://ci.appveyor.com/api/projec
 Master: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/2t8nit05e6n7sx6p/branch/master?svg=true)](https://ci.appveyor.com/project/jmtvms/centaurotech-utils-logrequesthandler/branch/master)
 
 #### Nuget package installation:
-To install CentauroTech.Utils.RegexReplacementAppender, run the following command in the Package Manager Console
+To install CentauroTech.Utils.LogRequestHandler, run the following command in the Package Manager Console
 
 	PM> Install-Package CentauroTech.Utils.LogRequestHandler
 	
