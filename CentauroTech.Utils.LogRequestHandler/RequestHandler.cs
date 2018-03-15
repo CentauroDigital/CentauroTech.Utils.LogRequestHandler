@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using CentauroTech.Utils.Http;
+using log4net;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -80,46 +81,22 @@ namespace CentauroTech.Utils.LogRequestHandler
 
             var requestUid = Guid.NewGuid();
 
-            HttpResponseMessage response = null;
+            var centauroTechMessage = new CentauroTechMessage(request);
 
             try
             {
-                if (Logger.IsDebugEnabled)
-                {
-                    try
-                    {
-                        await LogRequestAsync(request, requestUid);
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        Logger.Warn("Unable to parse content! Now trying with the default encoding...");
-                        try
-                        {
-                            await LogRequestAsync(request, requestUid, true);
-                        }
-                        catch
-                        {
-                            throw;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex is AggregateException)
-                            ex = ex.InnerException;
-
-                        Logger.Error("Error getting the request messaget: " + ex.Message, ex);
-                    }
-                }
-
-                response = await base.SendAsync(request, cancellationToken);
+                centauroTechMessage.StartTime = DateTime.Now;
+                centauroTechMessage.ResponseMessage = await base.SendAsync(centauroTechMessage.RequestMessage, cancellationToken);
+                centauroTechMessage.EndTime = DateTime.Now;
 
                 if (Logger.IsDebugEnabled)
                 {
                     try
                     {
-                        if (response != null)
+                        if (centauroTechMessage.ResponseMessage != null)
                         {
-                            await LogResponseAsync(response, requestUid);
+
+                            await LogRequestResponseAsync(centauroTechMessage, requestUid);
                         }
                     }
                     catch (InvalidOperationException)
@@ -127,7 +104,7 @@ namespace CentauroTech.Utils.LogRequestHandler
                         Logger.Warn("Unable to parse content! Now trying with the default encoding...");
                         try
                         {
-                            await LogResponseAsync(response, requestUid, true);
+                            await LogRequestResponseAsync(centauroTechMessage, requestUid, true);
                         }
                         catch
                         {
@@ -151,7 +128,7 @@ namespace CentauroTech.Utils.LogRequestHandler
                 Logger.Error("Error generating the log of the request: " + ex.Message, ex);
             }
 
-            return response;
+            return centauroTechMessage.ResponseMessage;
         }
 
         private int GetSatsusCodeNumber(HttpStatusCode httpStatusCode)
@@ -184,6 +161,41 @@ namespace CentauroTech.Utils.LogRequestHandler
                 ReasonPhrase = response.ReasonPhrase,
                 Headers = response?.Headers,
                 Content = await GetContentAsync(response.Content, useDefaultEncoding)
+            });
+        }
+
+        private async Task LogRequestResponseAsync(CentauroTechMessage centauroMessage, Guid messageUid, bool useDefaultEncoding = false)
+        {
+
+
+            Logger.Debug(
+            new
+            {
+                StartTime = centauroMessage.StartTime,
+                EndTime = centauroMessage.EndTime,
+                TotalTime = centauroMessage.TotalTime,
+
+                request = new
+                {
+                    LogMessage = $"Request object",
+                    HttpMessageUid = messageUid,
+                    Uri = centauroMessage.RequestMessage?.RequestUri.ToString(),
+                    Method = centauroMessage.RequestMessage?.Method.ToString(),
+                    Headers = centauroMessage.RequestMessage?.Headers,
+                    Content = await GetContentAsync(centauroMessage.RequestMessage.Content, useDefaultEncoding),
+                    RequestSize = centauroMessage.RequestMessage.Content.ReadAsByteArrayAsync().Result.Length
+                },
+
+                response = new
+                {
+                    LogMessage = "Response object",
+                    RequestUid = messageUid,
+                    StatusCode = GetSatsusCodeNumber(centauroMessage.ResponseMessage.StatusCode),
+                    ReasonPhrase = centauroMessage.ResponseMessage.ReasonPhrase,
+                    Headers = centauroMessage.ResponseMessage?.Headers,
+                    Content = await GetContentAsync(centauroMessage.ResponseMessage.Content, useDefaultEncoding),
+                    ResponseSize = centauroMessage.ResponseMessage.Content.ReadAsByteArrayAsync().Result.Length
+                }
             });
         }
 
