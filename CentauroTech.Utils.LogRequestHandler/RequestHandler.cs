@@ -126,6 +126,8 @@ namespace CentauroTech.Utils.LogRequestHandler
                     ex = ex.InnerException;
 
                 Logger.Error("Error generating the log of the request: " + ex.Message, ex);
+
+                throw ex;
             }
 
             return centauroTechMessage.ResponseMessage;
