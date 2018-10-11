@@ -127,7 +127,7 @@ namespace CentauroTech.Utils.LogRequestHandler
 
                 Logger.Error("Error generating the log of the request: " + ex.Message, ex);
 
-                throw ex;
+                throw;
             }
 
             return centauroTechMessage.ResponseMessage;
