@@ -54,4 +54,4 @@ To release a new version of the package (based on this document: https://docs.mi
 - Create the file `nuget.config` as described in https://dev.azure.com/CentauroDigital/Site%20Omni/_packaging?_a=connect&feed=internal-packages
 - Run `nuget pack`. This should create a `.nupkg` file
 - Run the publish command as described in https://dev.azure.com/CentauroDigital/Site%20Omni/_packaging?_a=connect&feed=internal-packages
-- **Delete the nuget.config` file :)**
+- **Delete the nuget.config file :)**
