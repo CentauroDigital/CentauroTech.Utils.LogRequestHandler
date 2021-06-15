@@ -133,8 +133,12 @@ namespace CentauroTech.Utils.LogRequestHandler
             return centauroTechMessage.ResponseMessage;
         }
 
-        private int GetSatsusCodeNumber(HttpStatusCode httpStatusCode)
+        private int GetStatusCode(HttpStatusCode? httpStatusCode)
         {
+            if(httpStatusCode == null)
+            {
+                return -1;
+            }
             return (int)httpStatusCode;
         }
 
@@ -148,7 +152,7 @@ namespace CentauroTech.Utils.LogRequestHandler
                 Uri = request?.RequestUri.ToString(),
                 Method = request?.Method.ToString(),
                 Headers = request?.Headers,
-                Content = await GetContentAsync(request.Content, useDefaultEncoding)
+                Content = await GetContentAsync(request?.Content, useDefaultEncoding)
             });
         }
 
@@ -159,17 +163,15 @@ namespace CentauroTech.Utils.LogRequestHandler
             {
                 LogMessage = "Response object",
                 RequestUid = messageUid,
-                StatusCode = GetSatsusCodeNumber(response.StatusCode),
-                ReasonPhrase = response.ReasonPhrase,
+                StatusCode = GetStatusCode(response?.StatusCode),
+                ReasonPhrase = response?.ReasonPhrase,
                 Headers = response?.Headers,
-                Content = await GetContentAsync(response.Content, useDefaultEncoding)
+                Content = await GetContentAsync(response?.Content, useDefaultEncoding)
             });
         }
 
         private async Task LogRequestResponseAsync(CentauroTechMessage centauroMessage, Guid messageUid, bool useDefaultEncoding = false)
         {
-
-
             Logger.Debug(
             new
             {
@@ -184,19 +186,19 @@ namespace CentauroTech.Utils.LogRequestHandler
                     Uri = centauroMessage.RequestMessage?.RequestUri.ToString(),
                     Method = centauroMessage.RequestMessage?.Method.ToString(),
                     Headers = centauroMessage.RequestMessage?.Headers,
-                    Content = await GetContentAsync(centauroMessage.RequestMessage.Content, useDefaultEncoding),
-                    RequestSize = centauroMessage.RequestMessage.Content.ReadAsByteArrayAsync().Result.Length
+                    Content = await GetContentAsync(centauroMessage.RequestMessage?.Content, useDefaultEncoding),
+                    RequestSize = centauroMessage.RequestMessage?.Content?.ReadAsByteArrayAsync().Result?.Length
                 },
 
                 response = new
                 {
                     LogMessage = "Response object",
                     RequestUid = messageUid,
-                    StatusCode = GetSatsusCodeNumber(centauroMessage.ResponseMessage.StatusCode),
-                    ReasonPhrase = centauroMessage.ResponseMessage.ReasonPhrase,
+                    StatusCode = GetStatusCode(centauroMessage.ResponseMessage?.StatusCode),
+                    ReasonPhrase = centauroMessage.ResponseMessage?.ReasonPhrase,
                     Headers = centauroMessage.ResponseMessage?.Headers,
-                    Content = await GetContentAsync(centauroMessage.ResponseMessage.Content, useDefaultEncoding),
-                    ResponseSize = centauroMessage.ResponseMessage.Content.ReadAsByteArrayAsync().Result.Length
+                    Content = await GetContentAsync(centauroMessage.ResponseMessage?.Content, useDefaultEncoding),
+                    ResponseSize = centauroMessage.ResponseMessage?.Content?.ReadAsByteArrayAsync().Result?.Length
                 }
             });
         }
