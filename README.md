@@ -50,7 +50,7 @@ https://logging.apache.org/log4net/
 #### Release
 To release a new version of the package (based on this document: https://docs.microsoft.com/pt-br/nuget/quickstart/create-and-publish-a-package-using-visual-studio-net-framework)
 - Edit the necessary information in `Properties/AssemblyInfo.cs`
-- Edit the necessaru information in `CentauroTech.Utils.LogRequestHandler.nuspec`
+- Edit the necessary information in `CentauroTech.Utils.LogRequestHandler.nuspec`
 - Create the file `nuget.config` as described in https://dev.azure.com/CentauroDigital/Site%20Omni/_packaging?_a=connect&feed=internal-packages
 - Run `nuget pack`. This should create a `.nupkg` file
 - Run the publish command as described in https://dev.azure.com/CentauroDigital/Site%20Omni/_packaging?_a=connect&feed=internal-packages
