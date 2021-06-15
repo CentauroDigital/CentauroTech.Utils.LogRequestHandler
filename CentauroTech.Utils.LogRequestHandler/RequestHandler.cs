@@ -168,8 +168,6 @@ namespace CentauroTech.Utils.LogRequestHandler
 
         private async Task LogRequestResponseAsync(CentauroTechMessage centauroMessage, Guid messageUid, bool useDefaultEncoding = false)
         {
-
-
             Logger.Debug(
             new
             {
@@ -185,7 +183,7 @@ namespace CentauroTech.Utils.LogRequestHandler
                     Method = centauroMessage.RequestMessage?.Method.ToString(),
                     Headers = centauroMessage.RequestMessage?.Headers,
                     Content = await GetContentAsync(centauroMessage.RequestMessage.Content, useDefaultEncoding),
-                    RequestSize = centauroMessage.RequestMessage.Content.ReadAsByteArrayAsync().Result.Length
+                    RequestSize = centauroMessage.RequestMessage?.Content?.ReadAsByteArrayAsync().Result?.Length
                 },
 
                 response = new
@@ -196,7 +194,7 @@ namespace CentauroTech.Utils.LogRequestHandler
                     ReasonPhrase = centauroMessage.ResponseMessage.ReasonPhrase,
                     Headers = centauroMessage.ResponseMessage?.Headers,
                     Content = await GetContentAsync(centauroMessage.ResponseMessage.Content, useDefaultEncoding),
-                    ResponseSize = centauroMessage.ResponseMessage.Content.ReadAsByteArrayAsync().Result.Length
+                    ResponseSize = centauroMessage.ResponseMessage?.Content?.ReadAsByteArrayAsync().Result?.Length
                 }
             });
         }
