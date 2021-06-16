@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CentauroTech.Utils.LogRequestHandler")]
 [assembly: AssemblyDescription("Nuget package to log requests made during HTTP request and responses on ASP.net web applications")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Centauro Tech")]
+[assembly: AssemblyCompany("Grupo SBF")]
 [assembly: AssemblyProduct("CentauroTech.Utils.LogRequestHandler")]
-[assembly: AssemblyCopyright("Copyright © Centauro Tech 2016")]
-[assembly: AssemblyTrademark("Copyright © Centauro Tech 2016")]
+[assembly: AssemblyCopyright("Copyright © Grupo SBF 2021")]
+[assembly: AssemblyTrademark("Copyright © Grupo SBF 2021")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
- [assembly: AssemblyVersion("1.1.*")]
+ [assembly: AssemblyVersion("1.1.0")]
 

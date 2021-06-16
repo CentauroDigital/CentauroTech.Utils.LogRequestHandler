@@ -1,22 +1,19 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <id>CentauroTech.Utils.LogRequestHandler</id>
+    <version>1.1.0</version>
+    <title>CentauroTech.Utils.LogRequestHandler</title>
+    <authors>Grupo SBF</authors>
+    <owners>Grupo SBF</owners>
     <licenseUrl>https://opensource.org/licenses/GPL-3.0</licenseUrl>
     <projectUrl>https://github.com/CentauroTech/CentauroTech.Utils.LogRequestHandler</projectUrl>
     <iconUrl>http://en.gravatar.com/userimage/4241994/3c65f3dcbad06bacd1800a6e0c55bb05.png?size=200</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>$description$</description>
-    <summary>$description$</summary>
-    <copyright>Copyright © Centauro Tech 2016</copyright>
+    <description>Nuget package to log requests made during HTTP request and responses on ASP.net web applications</description>
+    <summary>Nuget package to log requests made during HTTP request and responses on ASP.net web applications</summary>
+    <copyright>Copyright © Grupo SBF 2021</copyright>
     <tags>log4net log request handler</tags>
-    <references>
-      <reference file="CentauroTech.Utils.LogRequestHandler.dll" />
-    </references>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" />
       <frameworkAssembly assemblyName="System.Net" />
@@ -25,16 +22,16 @@
   </metadata>
   <files>
     <!--.net 4.5.1 support-->
-    <file src="CentauroTech.Utils.LogRequestHandler.dll" target="lib\net451" />
-    <file src="CentauroTech.Utils.LogRequestHandler.xml" target="lib\net451" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.dll" target="lib\net451" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.xml" target="lib\net451" />
     <!--.net 4.5.2 support-->
-    <file src="CentauroTech.Utils.LogRequestHandler.dll" target="lib\net452" />
-    <file src="CentauroTech.Utils.LogRequestHandler.xml" target="lib\net452" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.dll" target="lib\net452" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.xml" target="lib\net452" />
     <!--.net 4.6 support-->
-    <file src="CentauroTech.Utils.LogRequestHandler.dll" target="lib\net46" />
-    <file src="CentauroTech.Utils.LogRequestHandler.xml" target="lib\net46" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.dll" target="lib\net46" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.xml" target="lib\net46" />
     <!--.net 4.6.1 support-->
-    <file src="CentauroTech.Utils.LogRequestHandler.dll" target="lib\net461" />
-    <file src="CentauroTech.Utils.LogRequestHandler.xml" target="lib\net461" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.dll" target="lib\net461" />
+    <file src="bin/Release/CentauroTech.Utils.LogRequestHandler.xml" target="lib\net461" />
   </files>
 </package>
